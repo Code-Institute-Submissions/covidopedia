@@ -29,23 +29,47 @@ def get_terms():
 def register():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("...that username exists already...")
+            flash("...that email exists already...")
             return redirect(url_for("register"))
 
         register = {
-            "username": request.form.get("username").lower(),
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("email").lower()
         flash("You've successfully registered")
-   
+
     return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+                    session["user"] = request.form.get("email").lower()
+                    flash("Hallo {}".format(request.form.get("first_name")))
+            else:
+                flash("Incorrect email and/or password")
+                return redirect(url_for("login"))
+
+        else:
+            flash("Incorrect email and/or password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
 
 
 if __name__ == "__main__":

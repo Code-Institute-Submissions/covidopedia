@@ -45,9 +45,17 @@ html {
 .assistant-btn {
     font-family: 'Assistant', sans-serif;
     color: black;
-    text-transform: lowercase;
+    text-transform: lower;
     font-size: 15px;
     font-weight: 800;
+}
+
+.assistant-btn-change {
+    font-family: 'Assistant', sans-serif;
+    color: #b71c1c;
+    text-transform: lowercase;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 /* ------------------------- Layout ----- */

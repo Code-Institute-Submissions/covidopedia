@@ -3,35 +3,66 @@
 
     <h3 class="center-align dosis-heading">Register</h3>
 
+    <!-- card panel from Materialize -->
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <form class="col s12" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel">
-                <!-- username -->
+                <!-- input field from Materialize -->
                 <div class="row">
-					<div class="input-field col s12 assistant-btn">
-						<i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
-						<input id="username" name="username" type="text" minlength="5"
-                            maxlength="50" pattern="^[a-zA-Z0-9@._-]{5,50}$" class="validate" required>
-						<label for="username">username</label>
-					</div>
-                </div>
-                <!-- password -->
-                <div class="row">
-                    <div class="input-field col s12 assistant-btn">
-						<i class="fas fa-user-lock prefix light-blue-text text-darken-4"></i>
-                        <input id="password" name="password" type="password" minlength="7" 
-                            maxlength="15" pattern="^[a-zA-Z0-9@._-]{7,15}$" class="validate" required>
-                        <label for="password">password</label>
+                    <div class="col s12">
+                        <div class="row">
+                            <!-- first name -->
+                            <div class="input-field col s6 assistant-btn">
+                                <i class="fas fa-user-plus prefix assistant-btn-change"></i>
+                                <input id="first_name" name="first_name" type="text" minlength="1" 
+                                    maxlength="50" pattern="^[a-zA-Z0-9]{1,50}$" class="validate" required>
+                                <label for="first_name">first name</label>
+                            </div>
+                            <!-- last name -->
+                            <div class="input-field col s6 assistant-btn">
+                                <i class="fas fa-user-plus prefix assistant-btn-change"></i>
+                                <input id="last_name" name="last_name" type="text" minlength="1" 
+                                    maxlength="50" pattern="^[a-zA-Z0-9]{1,50}$" class="validate" required>
+                                <label for="last_name">last name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- email -->
+                            <div class="input-field col s12 assistant-btn">
+                                <i class="fas fa-user-plus prefix assistant-btn-change"></i>
+                                <input id="email" name="email" type="text" minlength="5" maxlength="50" 
+                                    pattern="^[a-zA-Z0-9@._-]{5,50}$" class="validate" required>
+                                <label for="email">email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- password -->
+                            <div class="input-field col s12 assistant-btn">
+                                <i class="fas fa-user-plus prefix assistant-btn-change"></i>
+                                <input id="password" name="password" type="password" minlength="8" 
+                                maxlength="15" pattern="^[a-zA-Z0-9!"£$%^&*()_-+={[}]~#:;@'<,.?/\"]{8,15}$" class="validate" required>
+                                <label for="password">password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- register -->
+                            <button type="submit" class="col s4 offset-m4 btn-flat deep-purple darken-3 
+                                white-text dosis-btn">Register me<i class="fas fa-sign-in-alt"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <!-- register -->
-                <div class="row">
-                    <button type="submit" class="col s4 offset-m4 btn-flat deep-purple darken-3 white-text dosis-btn">
-                        Register me <i class="fas fa-sign-in-alt"></i>
-                    </button>
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align">
+                If you're registered already ...
+                <a href="{{ url_for('register') }}" class="assistant-btn-change">Login</a>
+            </p>
+        </div>
     </div>
 
 {% endblock %}
