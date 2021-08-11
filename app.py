@@ -43,9 +43,9 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("email").lower()
+        session["user"] = request.form.get("email")
         flash("You've successfully registered")
+        return redirect(url_for("profile", email=session["user"]))
 
     return render_template("register.html")
 
@@ -58,9 +58,11 @@ def login():
 
         if existing_user:
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("email").lower()
-                    flash("Hallo {}".format(existing_user["first_name"].capitalize()))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("email").lower()
+                flash("Hallo {}".format(
+                    existing_user["first_name"].capitalize()))
+                return redirect(url_for("profile", email=session["user"]))
             else:
                 flash("Incorrect email and/or password")
                 return redirect(url_for("login"))
@@ -70,6 +72,19 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<email>", methods=["GET", "POST"])
+def profile(email):
+    email = mongo.db.users.find_one({"email": session["user"]})["email"]
+    return render_template("profile.html", email=email)
+
+
+@app.route("/profile/<first_name>", methods=["GET", "POST"])
+def profile_name(first_name):
+    first_name = mongo.db.users.find_one(
+        {"first_name": session["user"]})["first_name"]
+    return render_template("profile.html", first_name=first_name)
 
 
 if __name__ == "__main__":
