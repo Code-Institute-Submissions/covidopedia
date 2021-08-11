@@ -76,15 +76,15 @@ def login():
 
 @app.route("/profile/<email>", methods=["GET", "POST"])
 def profile(email):
-    email = mongo.db.users.find_one({"email": session["user"]})["email"]
-    return render_template("profile.html", email=email)
+    user = mongo.db.users.find_one({"email": session["user"]})
+    print(user)
+    return render_template("profile.html", first_name=user["first_name"], email=user["email"])
 
 
-@app.route("/profile/<first_name>", methods=["GET", "POST"])
-def profile_name(first_name):
-    first_name = mongo.db.users.find_one(
-        {"first_name": session["user"]})["first_name"]
-    return render_template("profile.html", first_name=first_name)
+# @app.route("/profile/<first_name>", methods=["GET", "POST"])
+# def profile_name(first_name):
+# first_name = mongo.db.users.find_one({"first_name": session["user"]})["first_name"]
+#    return render_template("profile.html", first_name=first_name)
 
 
 if __name__ == "__main__":
