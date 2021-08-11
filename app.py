@@ -60,7 +60,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("email").lower()
-                    flash("Hallo {}".format(request.form.get("first_name")))
+                    flash("Hallo {}".format(existing_user["first_name"].capitalize()))
             else:
                 flash("Incorrect email and/or password")
                 return redirect(url_for("login"))
