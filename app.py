@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
-    terms = mongo.db.terms.find()
+    terms = list(mongo.db.terms.find())
     return render_template("terms.html", terms=terms)
 
 
@@ -77,14 +77,28 @@ def login():
 @app.route("/profile/<email>", methods=["GET", "POST"])
 def profile(email):
     user = mongo.db.users.find_one({"email": session["user"]})
-    print(user)
-    return render_template("profile.html", first_name=user["first_name"], email=user["email"])
+    # print(user)
+    if session["user"]:
+        return render_template(
+            "profile.html", first_name=user["first_name"], email=user["email"])
 
 
 # @app.route("/profile/<first_name>", methods=["GET", "POST"])
 # def profile_name(first_name):
-# first_name = mongo.db.users.find_one({"first_name": session["user"]})["first_name"]
-#    return render_template("profile.html", first_name=first_name)
+# first_name = mongo.db.users.find_one(
+    # {"first_name": session["user"]})["first_name"]
+    # return render_template("profile.html", first_name=first_name)
+
+@app.route("/logout")
+def logout():
+    flash("You've been logged out")
+    session.clear
+    return redirect(url_for("login"))
+
+
+@app.route("/new")
+def new():
+    return render_template("new.html")
 
 
 if __name__ == "__main__":

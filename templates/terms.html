@@ -1,13 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- card from Materialize -->
+    <div class="row">
+        <div class="col s12 m9">
+            <div class="card ">
+                <div class="card-content">
+                    <div class="card-title dosis-heading-1">
+                        Results
+                    </div>
+                    <ul>
+                        {% for term in terms %}
+                        <li>
+                            <span class="dosis-heading-2">{{ term.termName }}</span>
+                            <span class="results-txt">{{ term.unAbbreviated }}</span><br><br>
+                            <span class="results-txt">{{ term.definition_01 }}</span><br><br>
+                            <span class="results-txt-1">See also: </span>
+                                <span class="results-txt"></span></span>{{ term.seeAlso_01 }}<br><br>
+                            <span class="results-txt">{{ term.source_01 }}</span><br><br>
 
-    {% for term in terms %}
-        {{ term.termName }}<br>
-        {{ term.unAbbreviated }}<br>
-        {{ term.definition_01 }}<br>
-        {{ term.seeAlso_01 }}<br>
-        {{ term.source_01 }}<br>
-    {% endfor %}
-    
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- <p class="results-txt">text</p> -->
+                </div>
+                <div class="card-action">
+                    <a href="#">This is a link</a>
+                    <a href="#">This is a link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m3">
+            <div class="row" id="edit-btn">
+                <!-- edit button from Materialize -->
+                <a class="waves-effect waves-light btn-large deep-purple darken-3 white-text dosis-btn">Edit</a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
