@@ -12,12 +12,13 @@
                     <ul>
                         {% for term in terms %}
                         <li>
-                            <span class="dosis-heading-2">{{ term.termName }}</span>
-                            <span class="results-txt">{{ term.unAbbreviated }}</span><br><br>
-                            <span class="results-txt">{{ term.definition_01 }}</span><br><br>
-                            <span class="results-txt-1">See also: </span>
-                                <span class="results-txt"></span></span>{{ term.seeAlso_01 }}<br><br>
-                            <span class="results-txt">{{ term.source_01 }}</span><br><br>
+                            <p class="dosis-heading-2">{{ term.term_name }}</p>
+                            <p class="results-txt">{{ term.un_abbreviated }}</p><br><br>
+                            <p class="results-txt">{{ term.definition_01 }}</p><br><br>
+                            <p class="results-txt-1">See also: </p>
+                                <span class="results-txt"></span></span>{{ term.see_also_01 }}<br><br>
+                            <p class="results-txt">{{ term.source_01 }}</p><br><br>
+                            <p><em>by: {{ term.created_by }}</em></p><br><br>
 
                         </li>
                         {% endfor %}

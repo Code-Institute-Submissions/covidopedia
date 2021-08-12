@@ -1,74 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" type=text/css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type=text/css>
-    <link rel="stylesheet" href={{ url_for('static', filename='css/style.css')}} type="text/css">
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous" type=text/css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type=text/css> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>Covidopedia</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <!-- navbar imported from Materialize (mobile collapse) for top navbar -->
-        <nav class="nav-extended white">
-            <div class="nav-wrapper">
-                <a href="home.html" class="brand-logo"></a>
-                    <img src=static/images/SARS-CoV-2_spikes-01.png height="64" alt="Logo - SARS-CoV-2"></a>
-                <a href="{{ url_for('get_terms') }}" class="logo-text">Covidopedia</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="navbar-style fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down ">
-                    <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
-                    <!-- { % if session.user } -->
-                        <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
-                        <li><a href="#" class="navbar-style black-text">My account</a></li>
-                        <li><a href="{{ url_for('new') }}" class="navbar-style black-text">Add new</a></li>
-                        <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
-                    <!-- { % else % } -->
-                        <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
-                        <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
-                    <!-- { % endif % } -->
-                </ul>
-            </div>
-        </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li>class="navbar-style black-text"></li>
-            <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
-        { % if session.user }
+      <!-- navbar imported from Materialize (mobile collapse) for top navbar -->
+      <nav class="nav-extended white">
+        <div class="nav-wrapper">
+          <a href="home.html" class="brand-logo"></a>
+          <img src=static/images/SARS-CoV-2_spikes-01.png height="64" alt="Logo - SARS-CoV-2"></a>
+          <a href="{{ url_for('get_terms') }}" class="logo-text">Covidopedia</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="navbar-style fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down ">
+              <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
+          <!-- { % if session.user } -->
             <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
             <li><a href="#" class="navbar-style black-text">My account</a></li>
             <li><a href="{{ url_for('new') }}" class="navbar-style black-text">Add new</a></li>
             <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
-        { % else % }
+          <!-- { % else % } -->
             <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
             <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
-        { % endif % }
-        </ul>
+          <!-- { % endif % } -->
+            </ul>
+        </div>
+      </nav>
+      
+      <ul class="sidenav" id="mobile-demo">
+        <li>class="navbar-style black-text"></li>
+        <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
+    { % if session.user }
+      <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
+      <li><a href="#" class="navbar-style black-text">My account</a></li>
+      <li><a href="{{ url_for('new') }}" class="navbar-style black-text">Add new</a></li>
+      <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
+    { % else % }
+      <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
+      <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
+    { % endif % }
+      </ul>
     </header>
+
     <section>
-        <!-- flash messages -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flash-messages">
-                        <p class="center-align">{{ message }}</p>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+      <!-- flash messages -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="row flash-messages">
+              <p class="center-align">{{ message }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
     </section>
 
+    <main class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
     <script src="{{url_for('static', filename='js/script.js') }}"></script>
 
     {% block scripts %}
     {% endblock %}
-</body>
+ 
+  </body>
 </html>

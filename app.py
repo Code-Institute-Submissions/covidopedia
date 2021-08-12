@@ -96,9 +96,24 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/new")
+@app.route("/new", methods=["GET", "POST"])
 def new():
-    return render_template("new.html")
+    if request.method == "POST":
+        term = {
+            "term_name": request.form.get("term_name"),
+            "un_abbreviated": request.form.get("un_abbreviated"),
+            "definition_01": request.form.get("definition_01"),
+            "see_also_01": request.form.get("see_also_01"),
+            "source_01": request.form.get("source_01"),
+            "category_name": request.form.get("category_name"),
+            "created_by": session["user"]
+        }
+        mongo.db.terms.insert_one(term)
+        flash("The new term has been successfully added to covidopedia")
+        return redirect(url_for("get_terms"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("new.html", categories=categories)
 
 
 if __name__ == "__main__":

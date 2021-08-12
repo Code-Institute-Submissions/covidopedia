@@ -3,16 +3,44 @@
 
     <h3 class="dosis-heading">Add a term</h3>
 
+    <!-- input field from Materialize -->
     <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Textarea</label>
-                </div>
+        <form class="col s12" method="POST" action="{{ url_for('new') }}">
+          <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Type your new term here" id="term_name" name="term_name" type="text" class="validate" required>
+                <label for="term_name">Term</label>
+            </div>
+            <div class="input-field col s12">
+                <input placeholder="If the term is an abbreviation, type the full term here" id="un_abbreviated" name="un_abbreviated" type="text">
+                <label for="un_abbreviated">Un-abbreviated</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="definition_01" name="definition_01" type="text" class="materialize-textarea validate" input placeholder="Type your definition here" required>
+                </textarea>
+                <label for="definition_01">Definition</label>
+            </div>
+            <div class="input-field col s12">
+                <input placeholder="Other relevant information" id="see_also_01" name="see_also_01" type="text">
+                <label for="see_also_01">See also</label>
+            </div>
+            <div class="input-field col s12">
+                <input placeholder="Give a URL or other source of information" id="source_01" name="source_01" type="text">
+                <label for="source_01">Source</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="category_name" name="category_name" class="validate" required>
+                    <option value="" disabled selected>Choose a category</option>
+                    {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category_name">Category</label>
+                <button class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn" type="submit">
+                    <i class="material-icons right">Add to the covidopedia</i>
+                </button>
             </div>
         </form>
     </div>
-      
 
 {% endblock %}
