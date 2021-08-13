@@ -25,8 +25,13 @@
                             <div class="col s12 m3">
                                 <div class="row" id="edit-btn">
                                     {% if session.user|lower == term.created_by|lower %}
-                                    <!-- edit button from Materialize -->
-                                        <a href="{{ url_for('edit_term', term_id=term._id) }}" class="waves-effect waves-light btn-large deep-purple darken-3 white-text dosis-btn">Edit</a>
+                                    <!-- buttons from Materialize -->
+                                        <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                                            class="waves-effect waves-light btn-large grey lighten-1 black-text dosis-btn">
+                                            Delete</a>
+                                        <a href="{{ url_for('edit_term', term_id=term._id) }}" 
+                                            class="waves-effect waves-light btn-large deep-purple darken-3 white-text dosis-btn">
+                                            Edit</a>
                                     {% endif %}
                                 </div>
                             </div>

@@ -26,6 +26,9 @@
             <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
             <li><a href="#" class="navbar-style black-text">My account</a></li>
             <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
+            {% if session.user|lower == "admin"|lower %}
+              <li><a href="{{ url_for('get_categories') }}">Manage categories</a></li>
+            {% endif %}
             <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
           <!-- { % else % } -->
             <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
@@ -42,6 +45,9 @@
       <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
       <li><a href="#" class="navbar-style black-text">My account</a></li>
       <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
+      {% if session.user|lower == "admin"|lower %}
+        <li><a href="{{ url_for('get_categories') }}">Manage categories</a></li>
+      {% endif %}
       <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
     { % else % }
       <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
