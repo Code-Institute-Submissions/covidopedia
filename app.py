@@ -138,7 +138,7 @@ def edit_term(term_id):
 @app.route("/delete_term/<term_id>")
 def delete_term(term_id):
     mongo.db.terms.remove({"_id": ObjectId(term_id)})
-    flash("Thank you, the term has been deleted")
+    flash("Thank you, the term has been deleted from covidopedia")
     return redirect(url_for("get_terms"))
 
 
@@ -155,10 +155,30 @@ def add_category():
             "category_name": request.form.get("category_name")
         }
         mongo.db.categories.insert_one(category)
-        flash("New Category Added")
+        flash("Thank you for adding a new category to covidopedia")
+        return redirect(url_for("get_categories"))
+    return render_template("add_category.html")
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category_name")
+        }
+        mongo.db.categories.update({"_id": ObjectId(category_id)}, submit)
+        flash("Thank you for updating the category in covidopedia")
         return redirect(url_for("get_categories"))
 
-    return render_template("add_category.html")
+    category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
+    return render_template("edit_category.html", category=category)
+
+
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.categories.remove({"_id": ObjectId(category_id)})
+    flash("Thank you, the category has been deleted from covidopedia")
+    return redirect(url_for("get_categories"))
 
 
 if __name__ == "__main__":

@@ -2,14 +2,12 @@
 {% block content %}
 
     <h3 class="center-align dosis-heading">Categories</h3>
-
     <div class="row">
         <div class="col s12 center-align">
             <a href="{{ url_for('add_category') }}" class="btn-large deep-purple darken-3 white-text dosis-btn">
                 Add Category</a>
         </div>
     </div>
-
     <div class="row">
         {% for category in categories %}
             <div class="col s12 m3">
@@ -18,8 +16,10 @@
                         <span class="card-title">{{ category.category_name }}</span>
                     </div>
                     <div class="card-action">
-                        <a href="#" class="btn deep-purple darken-3 white-text dosis-btn">Edit</a>
-                        <a href="#" class="btn grey lighten-1 black-text dosis-btn">Delete</a>
+                        <a href="{{ url_for('edit_category', category_id=category._id) }}" 
+                            class="btn deep-purple darken-3 white-text dosis-btn">Edit</a>
+                        <a href="{{ url_for('delete_category', category_id=category._id) }}" 
+                            class="btn grey lighten-1 black-text dosis-btn">Delete</a>
                     </div>
                 </div>
             </div>
