@@ -96,8 +96,8 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/new", methods=["GET", "POST"])
-def new():
+@app.route("/new_term", methods=["GET", "POST"])
+def new_term():
     if request.method == "POST":
         term = {
             "term_name": request.form.get("term_name"),
@@ -109,11 +109,30 @@ def new():
             "created_by": session["user"]
         }
         mongo.db.terms.insert_one(term)
-        flash("The new term has been successfully added to covidopedia")
+        flash("Thank you, the new term has been added to covidopedia")
         return redirect(url_for("get_terms"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("new.html", categories=categories)
+    return render_template("new_term.html", categories=categories)
+
+
+@app.route("/edit_term/<term_id>", methods=["GET", "POST"])
+def edit_term(term_id):
+    if request.method == "POST":
+        submit = {
+            "term_name": request.form.get("term_name"),
+            "un_abbreviated": request.form.get("un_abbreviated"),
+            "definition_01": request.form.get("definition_01"),
+            "see_also_01": request.form.get("see_also_01"),
+            "source_01": request.form.get("source_01"),
+            "category_name": request.form.get("category_name"),
+            "created_by": session["user"]
+        }
+        mongo.db.terms.update({"_id": ObjectId(term_id)}, submit)
+        flash("Thank you, your edit has been included in covidopedia")
+
+    term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
+    return render_template("edit_term.html", term=term)
 
 
 if __name__ == "__main__":

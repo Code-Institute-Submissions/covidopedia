@@ -9,20 +9,29 @@
                     <div class="card-title dosis-heading-1">
                         Results
                     </div>
-                    <ul>
+                    <div>
                         {% for term in terms %}
-                        <li>
-                            <p class="dosis-heading-2">{{ term.term_name }}</p>
-                            <p class="results-txt">{{ term.un_abbreviated }}</p><br><br>
-                            <p class="results-txt">{{ term.definition_01 }}</p><br><br>
-                            <p class="results-txt-1">See also: </p>
-                                <span class="results-txt"></span></span>{{ term.see_also_01 }}<br><br>
-                            <p class="results-txt">{{ term.source_01 }}</p><br><br>
-                            <p><em>by: {{ term.created_by }}</em></p><br><br>
-
-                        </li>
+                            <ul>
+                                <li>
+                                    <p class="dosis-heading-2">{{ term.term_name }}</p>
+                                    <p class="results-txt">{{ term.un_abbreviated }}</p><br><br>
+                                    <p class="results-txt">{{ term.definition_01 }}</p><br><br>
+                                    <p class="results-txt-1">See also: </p>
+                                        <span class="results-txt"></span></span>{{ term.see_also_01 }}<br><br>
+                                    <p class="results-txt">{{ term.source_01 }}</p><br><br>
+                                    <p><em>by: {{ term.created_by }}</em></p><br><br>
+                                </li>
+                            </ul>
+                            <div class="col s12 m3">
+                                <div class="row" id="edit-btn">
+                                    {% if session.user|lower == term.created_by|lower %}
+                                    <!-- edit button from Materialize -->
+                                        <a href="{{ url_for('edit_term', term_id=term._id) }}" class="waves-effect waves-light btn-large deep-purple darken-3 white-text dosis-btn">Edit</a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         {% endfor %}
-                    </ul>
+                    </div>
                     <!-- <p class="results-txt">text</p> -->
                 </div>
                 <div class="card-action">
@@ -31,12 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m3">
-            <div class="row" id="edit-btn">
-                <!-- edit button from Materialize -->
-                <a class="waves-effect waves-light btn-large deep-purple darken-3 white-text dosis-btn">Edit</a>
-            </div>
-        </div>
+
     </div>
 
 

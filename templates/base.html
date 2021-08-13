@@ -25,7 +25,7 @@
           <!-- { % if session.user } -->
             <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
             <li><a href="#" class="navbar-style black-text">My account</a></li>
-            <li><a href="{{ url_for('new') }}" class="navbar-style black-text">Add new</a></li>
+            <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
             <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
           <!-- { % else % } -->
             <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
@@ -41,7 +41,7 @@
     { % if session.user }
       <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
       <li><a href="#" class="navbar-style black-text">My account</a></li>
-      <li><a href="{{ url_for('new') }}" class="navbar-style black-text">Add new</a></li>
+      <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
       <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
     { % else % }
       <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
