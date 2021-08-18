@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type=text/css> 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Covidopedia</title>
-  </head>
-  <body>
-    <header>
-      <!-- navbar imported from Materialize (mobile collapse) for top navbar -->
-      <nav class="nav-extended white">
-        <div class="nav-wrapper">
-          <a href="home.html" class="brand-logo"></a>
-          <img src=static/images/SARS-CoV-2_spikes-01.png height="64" alt="Logo - SARS-CoV-2"></a>
-          <a href="{{ url_for('get_terms') }}" class="logo-text">Covidopedia</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="navbar-style fas fa-bars"></i></a>
-            <ul class="right hide-on-med-and-down ">
-              <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
-          <!-- { % if session.user } -->
-            <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
-            <li><a href="#" class="navbar-style black-text">My account</a></li>
-            <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
-            {% if session.user|lower == "admin@admin.com"|lower %}
-              <li><a href="{{ url_for('get_categories') }}">Manage categories</a></li>
-            {% endif %}
-            <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
-          <!-- { % else % } -->
-            <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
-            <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
-          <!-- { % endif % } -->
-            </ul>
-        </div>
-      </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type=text/css> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Covidopedia</title>
+    </head>
+    <body>
+        <header>
+            <!-- navbar imported from Materialize (mobile collapse) -->
+            <nav>
+                <div class="nav-wrapper white">
+                    <a href="{{ url_for('get_terms') }}">
+                        <img src=static/images/SARS-CoV-2_spikes-01.png height="64" alt="Logo - SARS-CoV-2"></a>
+                    <a href="{{ url_for('get_terms') }}" id="nav-layout" class="logo-text">covidopedia</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right">
+                        <i class="material-icons black-text">menu</i></a>
+                    <ul class="right hide-on-med-and-down ">
+                        <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Glossary</a></li>
+                        {% if session.user %}
+                            <li><a href="{{ url_for('profile', email=session['user']) }}" 
+                                class="navbar-style black-text">Profile</a></li>
+                            <li><a href="{{ url_for('new_term') }}" 
+                                class="navbar-style black-text">Add new</a></li>
+                            {% if session.user|lower == "admin@admin.com"|lower %}
+                                <li><a href="{{ url_for('get_categories') }}" 
+                                    class="navbar-style black-text">Manage categories</a></li>
+                            {% endif %}
+                            <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
+                            <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
       
       <ul class="sidenav" id="mobile-demo">
-        <li>class="navbar-style black-text"></li>
-        <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Home</a></li>
-    { % if session.user }
-      <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
-      <li><a href="#" class="navbar-style black-text">My account</a></li>
-      <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
-      {% if session.user|lower == "admin@admin.com"|lower %}
-        <li><a href="{{ url_for('get_categories') }}">Manage categories</a></li>
-      {% endif %}
-      <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
-    { % else % }
-      <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
-      <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
-    { % endif % }
+        <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Glossary</a></li>
+        {% if session.user %}
+          <li><a href="{{ url_for('profile', email=session['user']) }}" class="navbar-style black-text">Profile</a></li>
+          <li><a href="{{ url_for('new_term') }}" class="navbar-style black-text">Add new</a></li>
+          {% if session.user|lower == "admin@admin.com"|lower %}
+            <li><a href="{{ url_for('get_categories') }}">Manage categories</a></li>
+          {% endif %}
+          <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
+          <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
+        {% endif %}
       </ul>
     </header>
 

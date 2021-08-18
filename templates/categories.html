@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="center-align dosis-heading">Categories</h3>
+    <h3 class="center-align dosis-heading-purple">Categories</h3>
     <div class="row">
         <div class="col s12 center-align">
             <a href="{{ url_for('add_category') }}" class="btn-large deep-purple darken-3 white-text dosis-btn">
@@ -11,8 +11,8 @@
     <div class="row">
         {% for category in categories %}
             <div class="col s12 m3">
-                <div class="card results-txt center-align">
-                    <div class="card-content results-txt">
+                <div class="card results-txt-black center-align">
+                    <div class="card-content results-txt-black">
                         <span class="card-title">{{ category.category_name }}</span>
                     </div>
                     <div class="card-action">

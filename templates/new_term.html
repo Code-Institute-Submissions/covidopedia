@@ -1,27 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="dosis-heading">Add a term</h3>
+    <h3 class="dosis-heading-purple">Add a term</h3>
 
     <!-- input field from Materialize -->
     <div class="row">
         <form class="col s12" method="POST" action="{{ url_for('new_term') }}">
           <div class="row">
             <div class="input-field col s12">
-                <input placeholder="Type your new term here" id="term_name" name="term_name" type="text" class="validate" required>
+                <input placeholder="Type your new term here" 
+                    id="term_name" name="term_name" type="text" class="validate" required>
                 <label for="term_name">Term</label>
             </div>
             <div class="input-field col s12">
-                <input placeholder="If the term is an abbreviation, type the full term here" id="un_abbreviated" name="un_abbreviated" type="text">
+                <input placeholder="If the term is an abbreviation, type the full term here" 
+                    id="un_abbreviated" name="un_abbreviated" type="text">
                 <label for="un_abbreviated">Un-abbreviated</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="definition_01" name="definition_01" type="text" class="materialize-textarea validate" input placeholder="Type your definition here" required>
+                <textarea id="definition_01" name="definition_01" type="text" 
+                    class="materialize-textarea validate" input placeholder="Type your definition here" required>
                 </textarea>
                 <label for="definition_01">Definition</label>
             </div>
             <div class="input-field col s12">
-                <input placeholder="Other relevant information" id="see_also_01" name="see_also_01" type="text">
+                <select id="see_also_01" name="see_also_01" class="validate">
+                    <option value="" disabled selected></option>
+                    {% for x in see_also %}
+                    <option value="{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                </select>
                 <label for="see_also_01">See also</label>
             </div>
             <div class="input-field col s12">
@@ -30,14 +38,16 @@
             </div>
             <div class="input-field col s12">
                 <select id="category_name" name="category_name" class="validate" required>
-                    <option value="" disabled selected>Choose a category</option>
+                    <option value="" disabled selected></option>
                     {% for category in categories %}
                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                     {% endfor %}
                 </select>
                 <label for="category_name">Category</label>
+            </div>
+            <div class="row">
                 <button class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn" type="submit">
-                    <i class="material-icons right">Add to the covidopedia</i>
+                    Add to the covidopedia
                 </button>
             </div>
         </form>

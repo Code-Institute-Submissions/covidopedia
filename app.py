@@ -89,17 +89,18 @@ def profile(email):
         return render_template(
             "profile.html", first_name=user["first_name"], email=user["email"])
 
-
 # @app.route("/profile/<first_name>", methods=["GET", "POST"])
 # def profile_name(first_name):
 # first_name = mongo.db.users.find_one(
     # {"first_name": session["user"]})["first_name"]
     # return render_template("profile.html", first_name=first_name)
 
+
 @app.route("/logout")
 def logout():
+#    user = mongo.db.users.find_one({"email": session["user"]})
     flash("You've been logged out")
-    session.clear
+    session.pop("user")
     return redirect(url_for("login"))
 
 
@@ -119,8 +120,14 @@ def new_term():
         flash("Thank you, the new term has been added to covidopedia")
         return redirect(url_for("get_terms"))
 
+    see_also = mongo.db.terms.find().sort("term_name", 1)
+    see_also = list([x["term_name"] for x in list(see_also)])
+    print(see_also)
+
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("new_term.html", categories=categories)
+    return render_template("new_term.html", categories=categories, see_also=see_also)
+
+    # return render_template("see_also.html", see_also=see_also)
 
 
 @app.route("/edit_term/<term_id>", methods=["GET", "POST"])
@@ -164,6 +171,7 @@ def add_category():
         mongo.db.categories.insert_one(category)
         flash("Thank you for adding a new category to covidopedia")
         return redirect(url_for("get_categories"))
+
     return render_template("add_category.html")
 
 
