@@ -113,7 +113,16 @@ html {
     font-weight: bold;
 }
 
+/* label color */
 .input-field label {
+    color: #6a1b9a;
+    font-family: 'Assistant', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* label color */
+.label-txt {
     color: #6a1b9a;
     font-family: 'Assistant', sans-serif;
     font-size: 15px;

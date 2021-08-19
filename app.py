@@ -110,7 +110,6 @@ def new_term():
     if request.method == "POST":
         term = {
             "term_name": request.form.get("term_name"),
-            # "un_abbreviated": request.form.get("un_abbreviated"),
             "definition_01": request.form.get("definition_01"),
             "see_also_01": request.form.get("see_also_01"),
             "source_name_01": request.form.get("source_name_01"),
@@ -124,7 +123,6 @@ def new_term():
 
     see_also = mongo.db.terms.find().sort("term_name", 1)
     see_also = list([x["term_name"] for x in list(see_also)])
-    # print(see_also)
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("new_term.html", categories=categories,
@@ -154,7 +152,7 @@ def edit_term(term_id):
     categories = mongo.db.categories.find().sort("category_name", 1)
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     return render_template("edit_term.html", term=term,
-                           see_also=see_also, category=categories)
+                           see_also=see_also, categories=categories)
 
 
 @app.route("/delete_term/<term_id>")

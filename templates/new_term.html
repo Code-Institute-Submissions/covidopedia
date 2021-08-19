@@ -5,63 +5,67 @@
 
     <!-- input field from Materialize -->
     <div class="row card-panel">
-        <form class="col s12" method="POST" action="{{ url_for('new_term') }}">
+        <div class="col s12">
             <div class="row">
-                <div class="input-field col s12">
-                    <input id="term_name" name="term_name type="text" class="validate" required>
-                    <label for="term_name">Term</label>
-                </div>
+                <form class="col s12" method="POST" action="{{ url_for('new_term') }}">
+                    <div class="row">
+                        <div class="input-field label input[type=text]:focus col s12">
+                            <input id="term_name" name="term_name type="text" class="validate" required>
+                            <label for="term_name">Term</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field input[type=text]:focus col s12">
+                            <textarea id="definition_01" name="definition_01" type="text" 
+                                class="validate materialize-textarea label-txt" required>
+                            </textarea>
+                            <label for="definition_01">Definition</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field label input[type=text]:focus col s12">
+                            <select id="see_also_01" name="see_also_01" class="validate">
+                                <option value="" disabled selected></option>
+                                {% for x in see_also %}
+                                    <option value="{{ x }}">{{ x }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="see_also_01">See also</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field label input[type=text]:focus col s12">
+                            <input id="source_name_01" name="source_name_01" type="text" class="validate">
+                            <label for="source_name_01">Source</label>
+                        </div>
+                        <div class="input-field label col s12">
+                            <input id="source_01" name="source_01" type="url" class="validate">
+                            <label for="source_01">Source URL</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field label input[type=text]:focus col s12">
+                            <select id="category_name" name="category_name" class="validate" required>
+                                <option value="" disabled selected></option>
+                                {% for category in categories %}
+                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="category_name">Category</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit"
+                            class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn">
+                            Add to the covidopedia
+                        </button>
+                        <button class="btn waves-effect waves-light grey lighten-1 black-text dosis-btn">
+                            <a href="{{ url_for('get_terms') }}" class="black-text dosis-btn">Cancel</a>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="definition_01" name="definition_01" type="text" 
-                        class="materialize-textarea validate" input placeholder="Type your definition here" required>
-                    </textarea>
-                    <label for="definition_01">Definition</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <select id="see_also_01" name="see_also_01" class="validate">
-                        <option value="" disabled selected></option>
-                        {% for x in see_also %}
-                            <option value="{{ x }}">{{ x }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="see_also_01">See also</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="source_name_01" name="source_name_01" type="text" class="validate">
-                    <label for="source_name_01">Source</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="source_01" name="source_01" type="url" class="validate">
-                    <label for="source_01">Source URL</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected></option>
-                        {% for category in categories %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="category_name">Category</label>
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit"
-                    class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn">
-                    Add to the covidopedia
-                </button>
-                <button class="btn waves-effect waves-light grey lighten-1 black-text dosis-btn">
-                    <a href="{{ url_for('get_terms') }}" class="black-text dosis-btn">Cancel</a>
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 
 {% endblock %}
