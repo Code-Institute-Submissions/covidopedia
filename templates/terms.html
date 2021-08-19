@@ -10,7 +10,7 @@
                             covidopedia</span>
                     </div>
                     <div>
-                        <p  id="welcome-txt">Use this community encyclopedia to become an expert on all things 
+                        <p  class="welcome-txt">Use this community encyclopedia to become an expert on all things 
                             covid. To start with, why is it called covid-19? Are you sure you know the difference 
                             between PCR tests, lateral flow tests, and antibody tests? Need a reminder on 
                             positive predictive value? Or on DNA, RNA, and messenger RNA? And did a certain 
@@ -22,29 +22,60 @@
             </div>
         </div>
     </div>
+    <div>
+
+    {% for term in terms %}
+        <ul class="collapsible">        
+            <li>
+                <div class="collapsible-header white dosis-heading-1">
+                    <div class="col s3">
+                        <a href="" class="btn-small grey lighten-1 black-text dosis-btn">Done</a>
+                        <a href="{{ url_for('edit_term', term_id=term._id) }}" 
+                            class="btn-small deep-purple darken-3 white-text dosis-btn">Edit</a>
+                    </div>
+                    <div class="col s9">
+                        <strong>{{ term.term_name }}</strong>
+                    </div>
+                </div>
+                <div class="collapsible-body">
+                    <p class="results-txt-purple">Category:
+                        <span class="results-txt-black"></span></span>{{ term.category_name }}</p>
+                    <p class="results-txt-black">{{ term.un_abbreviated }}</p>
+                    <p class="results-txt-black">{{ term.definition_01 }}</p>
+                    <p class="results-txt-purple">See also:
+                        <span class="results-txt-black"></span></span>{{ term.see_also_01 }}</p>
+                    <p class="results-txt-black">Source:
+                        <span class="results-txt-black"></span></span>{{ term.source_01 }}</p>
+                    <p><em>Created by: {{ term.created_by }}</em></p>
+                </div>
+            </li>
+        </ul>
+    {% endfor %}
+    </div>
+
+
+
+
     <!-- card from Materialize -->
-    <div class="row">
+    <!-- <div class="row">
         <form action="{{ url_for('search') }}" method="post" class="col s12">
             <div class="row valign-wrapper center-align card-content black-text">
-                <div class="input-field col s12 m8 offset-m2">
-                    <div class="card no-shadows">
-                        <i class="material-icons prefix assistant-btn">search</i>
-                        <input placeholder="search covidopedia" type="text" name="query" id="query" 
-                            minlength="1" class="validate" required>
-                        <label for="query"></label>
-                    </div>
-                    <div class="col s12 m4">
-                        <a href="{{ url_for('get_terms') }}" class="btn grey lighten-1 black-text dosis-btn">
-                                Reset</a>
-                        <button type="submit" class="btn deep-purple darken-3 white-text dosis-btn">Search
-                        </button>
-                    </div>
+                <div class="input-field card no-shadows col s12 m8">
+                    <i class="material-icons prefix assistant-btn">search</i>
+                    <input placeholder="search covidopedia" type="text" name="query" id="query" 
+                        minlength="1" class="validate" required>
+                </div>
+                <div class="col s12 m4">
+                    <button type="submit" class="btn deep-purple darken-3 white-text dosis-btn">Search</button>
                 </div>
             </div>
         </form>
-    </div>   
+    </div>
+
+    <hr class="hr-style"> -->
+
     <!-- card from Materialize -->
-    {% if terms|length > 0 %}
+    <!-- {% if terms|length > 0 %}
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card no-shadows">
@@ -53,40 +84,51 @@
                     </div>
                     <div>
                         {% for term in terms %}
-                            <ul>
+                            <ul class="collapsible">
                                 <li>
-                                    <p class="dosis-heading-1">{{ term.term_name }}</p>
-                                    <p class="results-txt-black">{{ term.un_abbreviated }}</p><br><br>
-                                    <p class="results-txt-black">{{ term.definition_01 }}</p><br><br>
-                                    <p class="results-txt-purple">See also: </p>
-                                        <span class="results-txt-black"></span></span>{{ term.see_also_01 }}<br><br>
-                                    <p class="results-txt-black">{{ term.source_01 }}</p><br><br>
-                                    <p><em>by: {{ term.created_by }}</em></p><br><br>
+                                    <div class="collapsible-header white-text deep-purple darken-3">
+                                        <div class="col s3">
+                                            <a href="" class="btn-small grey lighten-1 black-text dosis-btn">Done</a>
+                                            <a href="" class="btn-small deep-purple darken-3 white-text dosis-btn">
+                                                Edit</a>                        
+                                        </div>
+                                        <div class="col s9">
+                                            {{ term.term_name }}
+                                        </div>
+                                    </div>
+                                    <div class="collapsible-body">
+                                        <p class="results-txt-black">{{ term.un_abbreviated }}</p><br><br>
+                                        <p class="results-txt-black">{{ term.definition_01 }}</p><br><br>
+                                        <p class="results-txt-purple">See also: </p>
+                                            <span class="results-txt-black"></span></span>{{ term.see_also_01 }}<br><br>
+                                        <p class="results-txt-black">{{ term.source_01 }}</p><br><br>
+                                        <p><em>by: {{ term.created_by }}</em></p><br><br>
+                                    </div>
                                 </li>
-                            </ul>
-                            <div class="col s12 m3">
+                            </ul> -->
+<!--                            <div class="col s12 m3">
                                 <div class="row" id="edit-btn">
                                     {% if session.user|lower == term.created_by|lower %}
-                                    <!-- buttons from Materialize -->
+                                         buttons from Materialize
                                         <a href="{{ url_for('delete_term', term_id=term._id) }}" 
                                             class="waves-effect waves-light btn-large grey lighten-1 
                                             black-text dosis-btn">Delete</a>
                                         <a href="{{ url_for('edit_term', term_id=term._id) }}" 
                                             class="waves-effect waves-light btn-large deep-purple darken-3 
-                                            white-text dosis-btn">
-                                            Edit</a>
-                                    {% endif %}
-                                </div>
-                            </div>
+                                            white-text dosis-btn">Edit</a>
+                                    {% endif %} -->
+                                <!-- </div> -->
+                            <!-- </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     {% else %}
         <h3 class="center-align" id="no-results-txt">No results found</h3>
-    {% endif %}
+    {% endif %} -->
+
+    <hr class="hr-style">
 
 {% endblock %}

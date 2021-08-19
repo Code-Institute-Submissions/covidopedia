@@ -21,7 +21,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
-    terms = list(mongo.db.terms.find())
+#    terms = list(mongo.db.terms.find())
+    terms = list(mongo.db.terms.find().sort("term_name", 1))
     return render_template("terms.html", terms=terms)
 
 
@@ -122,10 +123,11 @@ def new_term():
 
     see_also = mongo.db.terms.find().sort("term_name", 1)
     see_also = list([x["term_name"] for x in list(see_also)])
-    print(see_also)
+    # print(see_also)
 
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("new_term.html", categories=categories, see_also=see_also)
+    return render_template("new_term.html", categories=categories,
+        see_also=see_also)
 
     # return render_template("see_also.html", see_also=see_also)
 
@@ -145,8 +147,13 @@ def edit_term(term_id):
         mongo.db.terms.update({"_id": ObjectId(term_id)}, submit)
         flash("Thank you, your edit has been included in covidopedia")
 
+    see_also = mongo.db.terms.find().sort("term_name", 1)
+    see_also = list([x["term_name"] for x in list(see_also)])
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
-    return render_template("edit_term.html", term=term)
+    return render_template("edit_term.html", term=term,
+        see_also=see_also, category=categories)
 
 
 @app.route("/delete_term/<term_id>")

@@ -86,7 +86,7 @@ html {
     font-weight: 500;
 }
 
-#welcome-txt {
+.welcome-txt {
     font-family: 'Assistant', sans-serif;
     color: black;
     font-size: 16px;
@@ -162,3 +162,25 @@ https://stackoverflow.com/questions/51750706/how-to-turn-off-materializes-defaul
     box-shadow: none!important;
 }
 
+.btn-small {
+    margin: 5px;
+}
+
+.collapsible-header .col strong {
+    margin: 5px;
+    line-height: 42px;
+}
+
+/* approach to line format from W3Schools https://www.w3schools.com/tags/tag_hr.asp */
+.hr-style {
+   width: 100%;
+   text-align: left;
+   margin-left: 0;
+   color: #b8b5b5;
+   line-height: 2;
+}
+
+#contact-layout {
+    position: absolute;
+    margin-left: 5%;
+}
