@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_terms")
 def get_terms():
-#    terms = list(mongo.db.terms.find())
+    # terms = list(mongo.db.terms.find())
     terms = list(mongo.db.terms.find().sort("term_name", 1))
     return render_template("terms.html", terms=terms)
 
@@ -99,7 +99,7 @@ def profile(email):
 
 @app.route("/logout")
 def logout():
-#    user = mongo.db.users.find_one({"email": session["user"]})
+    # user = mongo.db.users.find_one({"email": session["user"]})
     flash("You've been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -113,6 +113,7 @@ def new_term():
             # "un_abbreviated": request.form.get("un_abbreviated"),
             "definition_01": request.form.get("definition_01"),
             "see_also_01": request.form.get("see_also_01"),
+            "source_name_01": request.form.get("source_name_01"),
             "source_01": request.form.get("source_01"),
             "category_name": request.form.get("category_name"),
             "created_by": session["user"]
@@ -127,7 +128,7 @@ def new_term():
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("new_term.html", categories=categories,
-        see_also=see_also)
+                           see_also=see_also)
 
     # return render_template("see_also.html", see_also=see_also)
 
@@ -137,9 +138,9 @@ def edit_term(term_id):
     if request.method == "POST":
         submit = {
             "term_name": request.form.get("term_name"),
-            # "un_abbreviated": request.form.get("un_abbreviated"),
             "definition_01": request.form.get("definition_01"),
             "see_also_01": request.form.get("see_also_01"),
+            "source_name_01": request.form.get("source_name_01"),
             "source_01": request.form.get("source_01"),
             "category_name": request.form.get("category_name"),
             "created_by": session["user"]
@@ -153,7 +154,7 @@ def edit_term(term_id):
     categories = mongo.db.categories.find().sort("category_name", 1)
     term = mongo.db.terms.find_one({"_id": ObjectId(term_id)})
     return render_template("edit_term.html", term=term,
-        see_also=see_also, category=categories)
+                           see_also=see_also, category=categories)
 
 
 @app.route("/delete_term/<term_id>")

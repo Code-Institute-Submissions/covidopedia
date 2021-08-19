@@ -4,53 +4,64 @@
     <h3 class="dosis-heading-purple">Edit the term</h3>
 
     <!-- input field from Materialize -->
-    <div class="row">
+    <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('edit_term', term_id=term._id) }}">
-          <div class="row">
-            <div class="input-field col s12">
-                <input id="term_name" name="term_name" value="{{ term.term_name }}" type="text" 
-                    class="validate" required>
-                <label for="term_name">Term</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="term_name" name="term_name" value="{{ term.term_name }}" type="text" 
+                        class="validate" required>
+                    <label for="term_name">Term</label>
+                </div>
             </div>
-            <div class="input-field col s12">
-                <!-- <input id="un_abbreviated" name="un_abbreviated" value="{{ term.un_abbreviated }}" type="text" 
+            <div class="row">
+                <div class="input-field col s12">
+                    <!--<textarea id="definition_01" name="definition_01" value="{{ term.definition_01 }}" type="text" 
+                        class="materialize-textarea validate" required>                    
+                    </textarea> -->
+                    <input id="definition_01" name="definition_01" value="{{ term.definition_01 }}" type="text" 
+                        class="materialize-textarea validate" required>                  
+                    <label for="definition_01">Definition</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="see_also_01" name="see_also_01" class="validate">
+                        <!-- <option value="" disabled selected></option> -->
+                        {% for x in see_also %}
+                            <option value="{{ x }}">{{ x }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="see_also_01">See also</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="source_name_01" name="source_name_01" value="{{ term.source_name_01 }}" type="text"
                     class="validate">
-                <label for="un_abbreviated">Un-abbreviated</label> -->
+                    <label for="source_name_01">Source</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="source_01" name="source_01" value="{{ term.source_01 }}" type="url"
+                        class="validate">
+                    <label for="source_01">Source URL</label>
+                </div>
             </div>
-            <div class="input-field col s12">
-                <textarea id="definition_01" name="definition_01" value="{{ term.definition_01 }}" type="text" 
-                    class="materialize-textarea validate" required>                    
-                </textarea>
-                <label for="definition_01">Definition</label>
-            </div>
-            <div class="input-field col s12">
-                <select id="see_also_01" name="see_also_01" class="validate">
-                    <option value="" disabled selected></option>
-                    {% for x in see_also %}
-                    <option value="{{ x }}">{{ x }}</option>
-                    {% endfor %}
-                </select>
-                <label for="see_also_01">See also</label>
-            </div>
-            <div class="input-field col s12">
-                <input id="source_01" name="source_01" value="{{ term.source_01 }}" type="text"
-                    class="validate">
-                <label for="source_01">Source</label>
-            </div>
-            <div class="input-field col s12">
-                <select id="category_name" name="category_name" class="validate" required>
-                    <option value="" disabled selected></option>
-                    {% for category in categories %}
-                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="category_name">Category</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="category_name" name="category_name" class="validate" required>
+                        <!-- <option value="" disabled selected></option> -->
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category_name">Category</label>
+                </div>
             </div>
             <div class="row">
                 <a href="{{ url_for('get_terms') }}" 
                     class="btn waves-effect waves-light grey lighten-1 black-text dosis-btn">Cancel</a>
                 <button class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn" 
-                    type="submit">Edit term</i></button>
+                    type="submit">Edit term</button>
             </div>
         </form>
     </div>

@@ -54,8 +54,8 @@
             {% endif %}
         </ul>
     </header>
+    <!-- flash messages -->
     <section>
-        <!-- flash messages -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -74,7 +74,7 @@
     <footer class="page-footer white">
         <div class="container">
             <div class="row">
-                <div class="col l3 s6 welcome-txt"">
+                <div class="col l3 s6 welcome-txt">
                     <span><a class="valign-wrapper" href="mailto:jameslancaster@outlook.com" target="blank">Contact covidopedia</a></span>
                     <i class="material-icons">email</i>
                 </div>
