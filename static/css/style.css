@@ -50,7 +50,7 @@ html {
 .dosis-heading-1 {
     font-family: 'Dosis', sans-serif;
     color: #6a1b9a;
-    text-transform: capitalize;
+/*    text-transform: capitalize; */
     font-size: 30px;
     font-weight: 700;
 }
