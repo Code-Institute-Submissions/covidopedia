@@ -1,6 +1,6 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-# covidopedia – the covid 19 glossary
+# Covidopedia – the covid-19 glossary
 
 We all know far more than we would ever have wanted to about covid-19, coronavirus, and SARS-CoV-2. It is possible to hope that, at least in western countries, we will soon be leaving all that behind. Of course, it may be that it is with us for a lot longer. The global pandemic has introduced many of us to new subject areas and vocabularies  - epidemiology and infectious disease, statistics, biotechnology, medicines regulation, health economics, and health planning. Not only that, but we know quite a lot of detail – polymerase chain reaction tests vs lateral flow tests, and deeper in, sensitivity vs specificity, and in further, to positive predictive value vs negative predictive value. Meanwhile, politicians and celebrities have continued to make their own special contributions that have heartened, amused, and horrified us. 
 
@@ -385,8 +385,13 @@ Make sure to delete a blank that may be added to the end of the Procfile.
 
 8. 'Enable Automatic Deploys', and click 'Deploy Branch'.
 
-
-
+## GitHub pages - creating a clone
+1. On GitHub, navigate to the main page of the repository.
+2. Above the list of files, click Code.
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the copy symbol
+4. On your computer, open Git Bash
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type 'git clone’, and then paste the URL just copied.
 
 # Credits
 ## Code
@@ -410,3 +415,12 @@ a	Many thanks to my mentor Seun for clear and focused guidance
 b	And many thanks to the tutor support team for hanging on in during some long and painful queries
 
 James Lancaster 21 August 2021
+
+Heroku deployment
+https://covid19-glossary.herokuapp.com/
+
+GitHub
+https://github.com/james-lancaster/covidopedia
+
+Local GitHub clone
+https://github.com/james-lancaster/covidopedia.git
