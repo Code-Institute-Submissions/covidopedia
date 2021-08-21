@@ -10,7 +10,7 @@
                 <form class="col s12" method="POST" action="{{ url_for('new_term') }}">
                     <div class="row">
                         <div class="input-field label input[type=text]:focus col s12">
-                            <input id="term_name" name="term_name type="text" class="validate" required>
+                            <input id="term_name" name="term_name" type="text" class="validate" required>
                             <label for="term_name">Term</label>
                         </div>
                     </div>
@@ -22,6 +22,7 @@
                             <label for="definition_01">Definition</label>
                         </div>
                     </div>
+                    <!-- Dropdown menu to select an existing term -->
                     <div class="row">
                         <div class="input-field label input[type=text]:focus col s12">
                             <select id="see_also_01" name="see_also_01" class="validate">
@@ -43,10 +44,10 @@
                             <label for="source_01">Source URL</label>
                         </div>
                     </div>
+                    <!-- Dropdown menu to select a category -->
                     <div class="row">
                         <div class="input-field label input[type=text]:focus col s12">
                             <select id="category_name" name="category_name" class="validate" required>
-                                <option value="" disabled selected></option>
                                 {% for category in categories %}
                                     <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                                 {% endfor %}
@@ -54,6 +55,7 @@
                             <label for="category_name">Category</label>
                         </div>
                     </div>
+                    <!-- Submit and cancel buttons -->
                     <div class="row">
                         <button type="submit"
                             class="btn waves-effect waves-light deep-purple darken-3 white-text dosis-btn">

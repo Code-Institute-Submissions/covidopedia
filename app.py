@@ -85,10 +85,13 @@ def login():
 @app.route("/profile/<email>", methods=["GET", "POST"])
 def profile(email):
     user = mongo.db.users.find_one({"email": session["user"]})
+    terms = list(mongo.db.terms.find().sort("term_name", 1))
     # print(user)
     if session["user"]:
         return render_template(
-            "profile.html", first_name=user["first_name"], email=user["email"])
+            "profile.html", first_name=user["first_name"], email=user["email"],
+            terms=terms)
+        # return render_template("profile.html", terms=terms)
 
 # @app.route("/profile/<first_name>", methods=["GET", "POST"])
 # def profile_name(first_name):
@@ -108,6 +111,7 @@ def logout():
 @app.route("/new_term", methods=["GET", "POST"])
 def new_term():
     if request.method == "POST":
+        print(request.form.get("term_name"))
         term = {
             "term_name": request.form.get("term_name"),
             "definition_01": request.form.get("definition_01"),
@@ -168,7 +172,7 @@ def get_categories():
     return render_template("categories.html", categories=categories)
 
 
-@app.route("/add_category", methods=["GET", "POST"])
+@app.route("/new_category", methods=["GET", "POST"])
 def add_category():
     if request.method == "POST":
         category = {
@@ -178,7 +182,7 @@ def add_category():
         flash("Thank you for adding a new category to covidopedia")
         return redirect(url_for("get_categories"))
 
-    return render_template("add_category.html")
+    return render_template("new_category.html")
 
 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])

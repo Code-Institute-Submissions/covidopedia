@@ -38,7 +38,7 @@
                     </ul>
                 </div>
             </nav>
-      
+        <!-- mobile collapse -->
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Glossary</a></li>
             {% if session.user %}
@@ -50,7 +50,7 @@
                     <li><a href="{{ url_for('logout') }}" class="navbar-style black-text">Log out</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}" class="navbar-style black-text">Login</a></li>
-                li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
+                <li><a href="{{ url_for('register') }}" class="navbar-style black-text">Register</a></li>
             {% endif %}
         </ul>
     </header>
@@ -71,17 +71,21 @@
         {% block content %}
         {% endblock %}
     </main>
+    
+    <!-- Footer-->
     <footer class="page-footer white">
         <hr class="hr-style">
         <div class="container">
             <div class="row">
                 <div class="col l3 s6 welcome-txt">
-                    <span><a class="valign-wrapper" href="mailto:jameslancaster@outlook.com" target="blank">Contact covidopedia</a></span>
+                    <span><a class="valign-wrapper" href="mailto:jameslancaster@outlook.com" 
+                        target="blank">Contact covidopedia</a></span>
                     <i class="material-icons">email</i>
                 </div>
                 <div class="col l3 s6 welcome-txt right">© 2021 covidopedia
-              </div>
+                </div>
             </div>
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

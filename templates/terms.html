@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <!-- Welcome -->
     <!-- card from Materialize -->
     <div class="row">
         <div class="col s12 m8 offset-m2">
@@ -22,57 +23,64 @@
             </div>
         </div>
     </div>
+
+    <!-- Search function -->
     <!-- card from Materialize -->
     <div class="row card-panel no-shadows">
         <form action="{{ url_for('search') }}" method="post" class="col s12">
             <div class="row valign-wrapper center-align card-content black-text">
-                <div class="input-field col s12 m8 offset">
+                <div class="input-field col s12 m8">
                     <i class="material-icons prefix assistant-btn">search</i>
                     <input placeholder="search covidopedia" type="text" name="query" 
                         id="query" minlength="1" class="validate" required>
                     <label for="query"></label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('get_terms') }}" class="btn grey lighten-1 black-text dosis-btn">Reset</a>
+                    <!-- <a href="{{ url_for('get_terms') }}" class="btn grey lighten-1 black-text dosis-btn">Reset</a> -->
                     <button type="submit" class="btn deep-purple darken-3 white-text dosis-btn">Search
                     </button>
                 </div>
             </div>
         </form>
     </div>
-    <div>
-        {% if terms|length > 0 %}
-            {% for term in terms %}
-                <ul class="collapsible">
-                    <li>
-                        <div class="row collapsible-header white dosis-heading-1">
-                            <div class="col s9">
-                                <strong>{{ term.term_name }}</strong>
+    <!-- Display the glossary -->
+    <div class="row card-panel">
+        <div class="col s12 m8 offset-m2">
+            {% if terms|length > 0 %}
+                {% for term in terms %}
+                    <ul class="collapsible">
+                        <li>
+                            <div class="row collapsible-header white dosis-heading-1">
+                                <div class="col s12 left">
+                                    <strong>{{ term.term_name }}</strong>
+                                </div>
+                                <!-- -->
+
                             </div>
-                            <div class="col s3">
-                                {% if session.user|lower == term.created_by|lower %}
-                                    <a href="{{ url_for('delete_term', term_id=term._id) }}" 
-                                        class="btn-small grey lighten-1 black-text dosis-btn">Done</a>
-                                    <a href="{{ url_for('edit_term', term_id=term._id) }}" 
-                                        class="btn-small deep-purple darken-3 white-text dosis-btn">Edit</a>
-                                {% endif %}
+                            <div class="collapsible-body">
+                                <p class="results-txt-purple">Category:
+                                    <span class="results-txt-black"></span>{{ term.category_name }}</p>
+                                <p class="results-txt-black">{{ term.definition_01 }}</p>
+                                <p class="results-txt-purple">See also:
+                                    <span class="results-txt-black"></span>{{ term.see_also_01 }}</p>
+                                <p class="results-txt-black">Source:
+                                    <a href="{{ term.source_01 }}" target="_blank">{{ term.source_name_01 }}</a></p>
+                                <p><em>Created by: {{ term.created_by }}</em></p>
+                                <div>
+                                    {% if session.user|lower == term.created_by|lower %}
+                                        <a href="{{ url_for('edit_term', term_id=term._id) }}" 
+                                            class="btn-small deep-purple darken-3 white-text dosis-btn">Edit</a>
+                                        <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                                            class="btn-small grey lighten-1 black-text dosis-btn">Delete</a>
+                                    {% endif %}
+                                </div>
                             </div>
-                        </div>
-                        <div class="collapsible-body">
-                            <p class="results-txt-purple">Category:
-                                <span class="results-txt-black"></span>{{ term.category_name }}</p>
-                            <p class="results-txt-black">{{ term.definition_01 }}</p>
-                            <p class="results-txt-purple">See also:
-                                <span class="results-txt-black"></span>{{ term.see_also_01 }}</p>
-                            <p class="results-txt-black">Source:
-                                <a href="{{ term.source_01 }}" target="_blank">{{ term.source_name_01 }}</a></p>
-                            <p><em>Created by: {{ term.created_by }}</em></p>
-                        </div>
-                    </li>
-                </ul>
-            {% endfor %}
-        {% else %}
-            <h3 class="center-align" id="no-results-txt-1">No results found</h3>
-        {% endif %}
+                        </li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <h3 class="center-align" id="no-results-txt-1">No results found</h3>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

@@ -10,5 +10,49 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12">            
+            <h3 class="center-align dosis-heading-1">
+                Here are the terms you've contributed
+            </h3>
+        </div>
+    </div>   
+    <div class="row card-panel">
+        <div class="col s12 m8 offset-m2">
+            {% if terms|length > 0 %}
+                {% for term in terms %}
+                    {% if session.user|lower == term.created_by|lower %}
+                        <ul class="collapsible no-shadows">
+                            <li>
+                                <div class="row collapsible-header white dosis-heading-2">
+                                    <div class="col s10">
+                                        <strong>{{ term.term_name }}</strong>
+                                    </div>
+                                    <div class="col s4">
+                                        <a href="{{ url_for('delete_term', term_id=term._id) }}" 
+                                            class="btn-small grey lighten-1 black-text dosis-btn-1">Delete</a>
+                                        <a href="{{ url_for('edit_term', term_id=term._id) }}" 
+                                            class="btn-small deep-purple darken-3 white-text dosis-btn-1">Edit</a>
+                                    </div>
+                                </div>
+                                <div class="collapsible-body">
+                                <p class="results-txt-purple">Category:
+                                    <span class="results-txt-black"></span>{{ term.category_name }}</p>
+                                <p class="results-txt-black">{{ term.definition_01 }}</p>
+                                <p class="results-txt-purple">See also:
+                                    <span class="results-txt-black"></span>{{ term.see_also_01 }}</p>
+                                <p class="results-txt-black">Source:
+                                    <a href="{{ term.source_01 }}" target="_blank">{{ term.source_name_01 }}</a></p>
+                                <p><em>Created by: {{ term.created_by }}</em></p>
+                            </div>
+                        </li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <h3 class="center-align" id="no-results-txt-1">You've not added any terms yet - but please go ahead and contribute to covidopedia</h3>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
