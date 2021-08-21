@@ -395,14 +395,12 @@ Make sure to delete a blank that may be added to the end of the Procfile.
 
 # Credits
 ## Code
-1. Materialize was used for the main layout elements of the site – forms, cards, navbar, and buttons
-2. 
-3. The contact form is from Bootstrap
-4. Videos – additional css from https://flaviocopes.com/ 
-5. I benefitted greatly from closely looking at other students’ work, which my mentor shared with me
+1. I have used much code and taken many ideas from the Backend Development mini project using Flask and MongoDB. 
+2. Materialize was used for the main layout elements of the site – forms, cards, navbar, and buttons
+3. I benefitted greatly from closely looking at other students’ work, which my mentor shared with me
 * The milestone project of Kesia Cardoso, https://thecryptopedia.herokuapp.com/glossary
 * The README from the milestone project of Rebecca Tracey-Timoney, https://github.com/rebeccatraceyt/bake-it-til-you-make-it/blob/master/README.md   
-6. In addition, I regularly consulted
+4. In addition, I regularly consulted
 * [StackOverflow](https://stackoverflow.com/)
 * [W3Schools](https://www.w3schools.com/)
 * [Geeks for Geeks](https://www.geeksforgeeks.org)
