@@ -2,10 +2,9 @@
 {% block content %}
 
     <h3 class="dosis-heading-purple">Edit the term</h3>
-
     <!-- input field from Materialize -->
     <div class="row card-panel">
-        <form class="col s12" method="POST"> <!-- Edited by jo: remove action completely-->
+        <form class="col s12" method="POST"> <!-- Remove action completely to address bug affecting POST method-->
             <div class="row">
                 <div class="input-field col s12">
                     <input id="term_name" name="term_name" value="{{ term.term_name }}" type="text" 
@@ -15,9 +14,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <!--<textarea id="definition_01" name="definition_01" value="{{ term.definition_01 }}" type="text" 
-                        class="materialize-textarea validate" required>                    
-                    </textarea> -->
+
                     <input id="definition_01" name="definition_01" value="{{ term.definition_01 }}" type="text" 
                         class="materialize-textarea validate" required>                  
                     <label for="definition_01">Definition</label>

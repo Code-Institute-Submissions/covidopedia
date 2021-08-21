@@ -2,18 +2,19 @@
 {% block content %}
 
     <h3 class="dosis-heading-purple">Add a term</h3>
-
     <!-- input field from Materialize -->
     <div class="row card-panel">
         <div class="col s12">
             <div class="row">
                 <form class="col s12" method="POST" action="{{ url_for('new_term') }}">
+                    <!-- Term name -->
                     <div class="row">
                         <div class="input-field label input[type=text]:focus col s12">
                             <input id="term_name" name="term_name" type="text" class="validate" required>
                             <label for="term_name">Term</label>
                         </div>
                     </div>
+                    <!-- Definition -->
                     <div class="row">
                         <div class="input-field input[type=text]:focus col s12">
                             <textarea id="definition_01" name="definition_01" type="text" 
@@ -34,6 +35,7 @@
                             <label for="see_also_01">See also</label>
                         </div>
                     </div>
+                    <!-- Source-->
                     <div class="row">
                         <div class="input-field label input[type=text]:focus col s12">
                             <input id="source_name_01" name="source_name_01" type="text" class="validate">

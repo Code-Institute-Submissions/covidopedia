@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Welcome section -->
     <div class="row">
         <div class="col s12">
             <div class="card-panel">
@@ -16,7 +17,8 @@
                 Here are the terms you've contributed
             </h3>
         </div>
-    </div>   
+    </div>
+    <!-- User's terms -->
     <div class="row card-panel">
         <div class="col s12 m8 offset-m2">
             {% if terms|length > 0 %}

@@ -132,8 +132,6 @@ def new_term():
     return render_template("new_term.html", categories=categories,
                            see_also=see_also)
 
-    # return render_template("see_also.html", see_also=see_also)
-
 
 @app.route("/edit_term/<term_id>", methods=["GET", "POST"])
 def edit_term(term_id):
@@ -173,7 +171,7 @@ def get_categories():
 
 
 @app.route("/new_category", methods=["GET", "POST"])
-def add_category():
+def new_category():
     if request.method == "POST":
         category = {
             "category_name": request.form.get("category_name")
