@@ -4,7 +4,7 @@
 
 We all know far more than we would ever have wanted to about covid-19, coronavirus, and SARS-CoV-2. It is possible to hope that, at least in western countries, we will soon be leaving all that behind. Of course, it may be that it is with us for a lot longer. The global pandemic has introduced many of us to new subject areas and vocabularies  - epidemiology and infectious disease, statistics, biotechnology, medicines regulation, health economics, and health planning. Not only that, but we know quite a lot of detail – polymerase chain reaction tests vs lateral flow tests, and deeper in, sensitivity vs specificity, and in further, to positive predictive value vs negative predictive value. Meanwhile, politicians and celebrities have continued to make their own special contributions that have heartened, amused, and horrified us. 
 
-So here it is, the glossary that brings all that together. Yes of course all the terms could be googled. But what of the actors? Can we understand covid in the UK without Dominic Cummings’ eye test or Matt Hancock’s kiss? Surely a glossary should have a place for the terms “Donald Trump” and “bleach”? And what of unlikely heroes or villains like Anders Tegnall and Shi Zhengli?
+So here it is, the glossary that brings all that together. Yes of course all the terms could be googled. But what of the actors? Can we understand covid in the UK without Dominic Cummings’ eye test or Matt Hancock’s kiss? Surely a glossary should have a place for the terms “Donald Trump” and “bleach”? And what of unlikely heroes or villains like Anders Tegnell and Shi Zhengli?
 
 The website would provide a platform to gather this information together. With the site’s users acting as contributors, a much wider range of terms and definitions could be assembled than with just one individual or team. While remaining as scientifically accurate and well informed as possible, it would include the humorous and cultural aspects of covid. After all, it has affected the lived experience of a large part of humanity, so we need to think of it as social and cultural.
 
@@ -326,9 +326,9 @@ Okay – two warnings for use of “let”
 4. Friends and family were asked to comment on the site, and carried out the Safari browser tests.
 
 ## Known bugs
-1. Navbar – the logo is lost on the profile page
-2. The search bar is too narrow on the mobile screen
-3. Formatting of the forms for editing and adding terms; at the moment they are inconsistent, probably due to an unresolved conflict with my formatting and that in Materialize; I have not been able to find the reason.
+1. The search bar is too narrow on the mobile screen
+2. Formatting of the forms for editing and adding terms; at the moment they are inconsistent, probably due to an unresolved conflict between my formatting and that in Materialize; I have not been able to find the reason.
+3. The glossary now returns a "None" entry for the 'see_also' field. This may be due to an error in the 'see_also' code, but I note that it started after I deleted all entries and recreated them made by a range of users as a test.
 
 # Deployment
 ## Database creation with MongoDB Atlas
@@ -422,5 +422,3 @@ https://covid19-glossary.herokuapp.com/
 GitHub
 https://github.com/james-lancaster/covidopedia
 
-Local GitHub clone
-https://github.com/james-lancaster/covidopedia.git

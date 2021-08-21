@@ -15,7 +15,7 @@
             <nav>
                 <div class="nav-wrapper white">
                     <a href="{{ url_for('get_terms') }}">
-                        <img src=static/images/SARS-CoV-2_spikes-01.png height="64" alt="Logo - SARS-CoV-2"></a>
+                        <img src="{{ url_for('static', filename = 'images/SARS-CoV-2_spikes-01.png') }}" height="64" alt="Logo - SARS-CoV-2"></a>
                     <a href="{{ url_for('get_terms') }}" id="nav-layout" class="logo-text">covidopedia</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger right">
                         <i class="material-icons black-text">menu</i></a>
