@@ -21,9 +21,9 @@
                         <i class="material-icons black-text">menu</i></a>
                     <ul class="right hide-on-med-and-down ">
                         <li><a href="{{ url_for('get_terms') }}" class="navbar-style black-text">Glossary</a></li>
-                        <li><a href="{{ url_for('profile', email=session['user']) }}" 
-                            class="navbar-style black-text">Profile</a></li>
                         {% if session.user %}
+                            <li><a href="{{ url_for('profile', email=session['user']) }}" 
+                                class="navbar-style black-text">Profile</a></li>
                             <li><a href="{{ url_for('new_term') }}" 
                                 class="navbar-style black-text">Add new</a></li>
                             {% if session.user|lower == "admin@admin.com"|lower %}
